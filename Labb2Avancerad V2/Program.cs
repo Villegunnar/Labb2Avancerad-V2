@@ -1,15 +1,10 @@
 using Labb2_Avancerad.Models;
+using Labb2Avancerad_V2.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-
-
-
-
-
 
 
 //Inject DbContext
@@ -25,6 +20,7 @@ builder.Services.AddCors((setup) => setup.AddPolicy("default", (Options =>
 
  // Inject Repositories
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
 
 
 
@@ -49,6 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("default");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -1,25 +1,30 @@
 ﻿using Labb2_Avancerad.Models;
+using Labb2Avancerad_V2.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
-
-namespace Labb2_Avancerad.Controllers
+namespace Labb2Avancerad_V2.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class DepartmentController : Controller
     {
-        private readonly IEmployeeRepository _employeeRepository;
-        public EmployeeController(IEmployeeRepository employeeRepository)
+
+
+        private readonly IDepartmentRepository _departmentRepository;
+
+
+        public DepartmentController(IDepartmentRepository departmentRepository)
         {
-            _employeeRepository = employeeRepository;
+            _departmentRepository = departmentRepository;
         }
+
         [HttpGet]
-        public ActionResult GetAllEmployees()
+        public ActionResult GetAllDepartments()
         {
             try
             {
-                return Ok(_employeeRepository.GetAllEmployees.ToList());
+                return Ok(_departmentRepository.GetAllDepartments.ToList());
             }
             catch (Exception)
             {
@@ -29,12 +34,12 @@ namespace Labb2_Avancerad.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public IActionResult GetEmployeeById(int id)
+        public IActionResult GetDepartmentById(int id)
         {
 
             try
             {
-                var result = _employeeRepository.GetEmployeeById(id);
+                var result = _departmentRepository.GetDepartmentById(id);
 
                 if (result == null) return NotFound();
 
@@ -47,17 +52,17 @@ namespace Labb2_Avancerad.Controllers
             }
         }
         [HttpPost, ActionName("Delete")]
-        public IActionResult AddEmployee(Employee employee)
+        public IActionResult AddDepartment(Department department)
         {
             try
             {
-                if (employee == null)
+                if (department == null)
                     return BadRequest();
 
-                var result = _employeeRepository.AddEmployee(employee);
+                var result = _departmentRepository.AddDepartment(department);
 
-                return Ok(CreatedAtAction(nameof(GetEmployeeById),
-                    new { id = result.EmployeeId }, result));
+                return Ok(CreatedAtAction(nameof(GetDepartmentById),
+                    new { id = result.DepartmentId }, result));
             }
             catch (Exception)
             {
@@ -66,21 +71,21 @@ namespace Labb2_Avancerad.Controllers
             }
         }
         [HttpPut("{id:int}")]
-        public IActionResult UpdateEmployee(int id, Employee employee)
+        public IActionResult UpdateDepartment(int id, Department department)
         {
 
 
             try
             {
-                if (id != employee.EmployeeId)
+                if (id != department.DepartmentId)
                     return BadRequest("Employee ID mismatch");
 
-                var result = _employeeRepository.GetEmployeeById(id);
+                var result = _departmentRepository.GetDepartmentById(id);
 
                 if (result == null)
-                    return NotFound($"Employee with Id = {id} not found");
+                    return NotFound($"Department with Id = {id} not found");
 
-                _employeeRepository.UpdateEmployee(employee);
+                _departmentRepository.UpdateDepartment(department);
 
                 return Ok(result);
             }
@@ -93,17 +98,17 @@ namespace Labb2_Avancerad.Controllers
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult DeleteEmployee(int id)
+        public IActionResult DeleteDepartment(int id)
         {
             try
             {
-                var result = _employeeRepository.GetEmployeeById(id);
+                var result = _departmentRepository.GetDepartmentById(id);
 
                 if (result == null)
                 {
-                    return NotFound($"Employee with Id = {id} not found");
+                    return NotFound($"Department with Id = {id} not found");
                 }
-                _employeeRepository.DeleteEmployee(id);
+                _departmentRepository.DeleteDepartment(id);
 
 
                 return Ok(result);
