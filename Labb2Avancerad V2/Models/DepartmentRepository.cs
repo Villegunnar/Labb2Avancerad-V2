@@ -27,6 +27,7 @@ namespace Labb2Avancerad_V2.Models
         public Department AddDepartment(Department department)
         {
             _context.Departments.Add(department);
+            _context.SaveChanges();
 
             return department;
         }
@@ -59,8 +60,8 @@ namespace Labb2Avancerad_V2.Models
             {
 
                 departmentUpdate.DepartmentName = department.DepartmentName;
-               
-               
+
+
 
                 _context.SaveChanges();
                 return departmentUpdate;
@@ -69,4 +70,6 @@ namespace Labb2Avancerad_V2.Models
             return null;
         }
     }
+
+
 }

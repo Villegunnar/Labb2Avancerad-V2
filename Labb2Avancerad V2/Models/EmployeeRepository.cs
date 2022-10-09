@@ -36,7 +36,9 @@ namespace Labb2_Avancerad.Models
         public Employee AddEmployee(Employee employee)
         {
             _context.Employees.Add(employee);
+            _context.SaveChanges();
 
+        
             return employee;
 
         }

@@ -1,6 +1,7 @@
 using Labb2_Avancerad.Models;
 using Labb2Avancerad_V2.Models;
 using Microsoft.EntityFrameworkCore;
+using Labb2Avancerad_V2.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -51,5 +52,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
 
 app.Run();

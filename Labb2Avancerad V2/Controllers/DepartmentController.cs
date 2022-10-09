@@ -51,7 +51,7 @@ namespace Labb2Avancerad_V2.Controllers
                     "Error retrieving data from the database");
             }
         }
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public IActionResult AddDepartment(Department department)
         {
             try
@@ -60,6 +60,8 @@ namespace Labb2Avancerad_V2.Controllers
                     return BadRequest();
 
                 var result = _departmentRepository.AddDepartment(department);
+
+              
 
                 return Ok(CreatedAtAction(nameof(GetDepartmentById),
                     new { id = result.DepartmentId }, result));
@@ -86,6 +88,7 @@ namespace Labb2Avancerad_V2.Controllers
                     return NotFound($"Department with Id = {id} not found");
 
                 _departmentRepository.UpdateDepartment(department);
+                
 
                 return Ok(result);
             }

@@ -46,7 +46,7 @@ namespace Labb2_Avancerad.Controllers
                     "Error retrieving data from the database");
             }
         }
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         public IActionResult AddEmployee(Employee employee)
         {
             try
@@ -55,6 +55,7 @@ namespace Labb2_Avancerad.Controllers
                     return BadRequest();
 
                 var result = _employeeRepository.AddEmployee(employee);
+                
 
                 return Ok(CreatedAtAction(nameof(GetEmployeeById),
                     new { id = result.EmployeeId }, result));

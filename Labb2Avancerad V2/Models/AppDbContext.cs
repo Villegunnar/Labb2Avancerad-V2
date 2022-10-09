@@ -28,8 +28,8 @@ namespace Labb2_Avancerad.Models
                 .RuleFor(m => m.Adress, f => f.Address.FullAddress())
                 .RuleFor(m => m.Email, f => f.Internet.Email())
                 .RuleFor(m => m.Gender, f => f.Person.Gender.ToString())
-                .RuleFor(m => m.PhoneNumber, f => f.Person.Phone.ToString())
-                .RuleFor(m => m.Salary, f => ((double)f.Finance.Amount(100, 10000)))
+                .RuleFor(m => m.PhoneNumber, f => f.Phone.PhoneNumber())
+                .RuleFor(m => m.Salary, f => ((decimal)f.Finance.Amount(17000, 35000, 0)))
                 .RuleFor(m => m.DepartmentId, f => f.Random.Number(1, 5));
 
 
@@ -44,11 +44,11 @@ namespace Labb2_Avancerad.Models
 
             modelBuilder
                 .Entity<Employee>()
-                .HasData(personalStock.GenerateBetween(20, 20));
+                .HasData(personalStock.GenerateBetween(50, 50));
 
             modelBuilder
                 .Entity<Department>()
-                .HasData(departmentStock.GenerateBetween(5, 5));
+                .HasData(departmentStock.GenerateBetween(10, 10));
 
 
 

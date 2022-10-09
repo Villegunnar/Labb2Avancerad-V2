@@ -14,7 +14,7 @@
         public int DepartmentId { get; set; }
         public Department? Department { get; set; }
         public string? Adress { get; set; }
-        public double? Salary { get; set; }
+        public decimal? Salary { get; set; }
 
 
 
