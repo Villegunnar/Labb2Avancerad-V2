@@ -10,7 +10,7 @@
         public string?    PhoneNumber { get; set; }
         public string? Gender { get; set; }
 
-
+        
         public int DepartmentId { get; set; }
         public Department? Department { get; set; }
         public string? Adress { get; set; }
