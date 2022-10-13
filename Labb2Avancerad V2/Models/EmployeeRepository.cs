@@ -20,17 +20,19 @@ namespace Labb2_Avancerad.Models
         {
             get
             {
-                return _context.Employees;
+                return _context.Employees.Include(d => d.Department);
 
-                // För att Returnera Personal med Departments
-                // return _context.Personals.Include(p => p.Department);
+               
             }
         }
 
         // Get Singel Personal
         public Employee GetEmployeeById(int emplyeeId)
         {
-            return _context.Employees.FirstOrDefault(x => x.EmployeeId == emplyeeId);
+            var employee = _context.Employees.Include(e => e.Department).Where(x => x.EmployeeId == emplyeeId).FirstOrDefault();
+
+
+            return employee;
         }
         // Create Personal
         public Employee AddEmployee(Employee employee)
