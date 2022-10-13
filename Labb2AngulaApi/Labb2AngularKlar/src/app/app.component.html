@@ -1,0 +1,165 @@
+<div>
+  <h1 class="title">Employee Registration</h1>
+
+  <section class="container">
+      <div class="left-half">
+
+          <div class="fixed_header">
+              <thead>
+                  <tr>
+                      <th>Employees Form</th>
+
+                  </tr>
+              </thead>
+          </div>
+
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+
+
+              <div class="form-group">
+                  <label for="">First Name</label>
+                  <input type="text" name="firstName" [(ngModel)]="employee.firstName" />
+              </div>
+              <div class="form-group">
+                  <label for="">Last Name</label>
+                  <input type="text" name="lastName" [(ngModel)]="employee.lastName" />
+              </div>
+              <div class="form-group">
+                  <label for="">Email</label>
+                  <input type="text" name="email" [(ngModel)]="employee.email" />
+              </div>
+
+              <div class="form-group">
+                  <label for="">PhoneNumber</label>
+                  <input type="text" name="phoneNumber" [(ngModel)]="employee.phoneNumber" />
+              </div>
+
+              <div class="form-group">
+                  <label for="">Gender</label>
+                  <input type="text" name="gender" [(ngModel)]="employee.gender" />
+              </div>
+
+
+
+
+
+              <div class="form-group">
+                  <label for="">Department</label>
+                  <!-- <app-dropdown-departments></app-dropdown-departments> -->
+                  <div class="form-group">
+                      <select name="singleSelect" [(ngModel)]="employee.departmentId">
+                      <option *ngFor="let dep of departments" value={{dep.departmentId}}>{{dep.departmentName}}</option>
+                      </select>
+                      </div>
+                      
+                  <!-- <input type="text" name="departmentId" [(ngModel)]="employee.departmentId" /> -->
+              </div>
+                  
+
+
+
+
+
+
+
+              <div class="form-group">
+                  <label for="">Adress</label>
+                  <input type="text" name="adress" [(ngModel)]="employee.adress" />
+              </div>
+
+              <div class="form-group">
+                  <label for="">Salary</label>
+                  <input type="text" name="salary" [(ngModel)]="employee.salary" />
+              </div>
+
+              <div class="form-group">
+                  <button  class="save-button">Save</button>
+              </div>
+          </form>
+      </div>
+
+      <div class="right-half">
+
+
+
+          <table class="fixed_header">
+
+
+              <thead>
+                  <tr>
+                      <th>Employees List</th>
+
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let employee of employees">
+
+
+
+
+
+                      <div (click)="populateForm(employee)" class="employee-row-details">
+                          <td>
+
+
+                              <span>Name: {{ employee.firstName + " " }}</span>
+                              <span>{{ employee.lastName }}</span><br />
+                              <span>Email: {{ employee.email }}</span><br />
+                              <span>Phonenumber: {{ employee.phoneNumber }}</span><br />
+                              <span>Gender: {{ employee.gender }}</span><br />
+                              <span>Department Name: {{ employee.department?.departmentName }}</span><br />
+                              <span>Adress: {{ employee.adress }}</span><br />
+                              <span>Salary: {{ employee.salary + " kr" }}</span><br />
+
+                          </td>
+
+                      </div>
+                      <button class="employee-row-action">
+                          <a (click)="onDeleteEmployee(employee.employeeId)" ><i
+                                  class="fa-sharp fa-solid fa-trash-can"></i></a>
+
+                      </button>
+                      <div class="space"></div>
+
+                  </tr>
+
+
+              </tbody>
+          </table>
+
+
+
+          <!-- <h1>Employee Information:</h1>
+          <div class="employee-row">
+              <div class="employee-row-styling">
+                  <div (click)="populateForm(employee)" class="employee-row" *ngFor="let employee of employees">
+                      <div class="employee-row-details">
+                          <span>{{ employee.firstName + " " }}</span>
+                          <span>{{ employee.lastName }}</span><br />
+                          <span>{{ employee.email }}</span><br />
+                          <span>{{ employee.phoneNumber }}</span><br />
+                          <span>{{ employee.gender }}</span><br />
+                          <span>{{ employee.departmentId }}</span><br />
+                          <span>{{ employee.adress }}</span><br />
+                          <span>{{ employee.salary }}</span><br />
+                          <div class="employee-row-action">
+                              <a (click)="onDeleteEmployee(employee.employeeId)"><i
+                                      class="fa-sharp fa-solid fa-trash-can"></i></a>
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+
+
+              </div>
+
+          </div> -->
+
+      </div>
+
+  </section>
+</div>
